@@ -1,0 +1,9 @@
+# Topic / Question 
+
+# Algorithm / Answer / How it Works
+
+# Time and Space Complexities
+
+[
+    Code block
+]

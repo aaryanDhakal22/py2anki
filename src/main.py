@@ -2,16 +2,22 @@ from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 
-from pprint import pprint
+# Input
+PATH_TO_TARGETED_FILE = None  # STRING
 
-python_file = open("../demos/test.py", "r")
+# Output
+PATH_TO_CARD_FILE = None  # STRING
+
+python_file = open(PATH_TO_TARGETED_FILE, "r")
 content = python_file.readlines()
-# print(content)
+
 question = str()
 algorithm = str()
 complexity = str()
 code = str()
+
 counter = 0
+
 for n, i in enumerate(content):
     if i != "\n":
         if counter == 0:
@@ -26,10 +32,10 @@ for n, i in enumerate(content):
             break
     else:
         counter += 1
-pprint(code)
+
 myformatter = HtmlFormatter()
 myformatter.lineseparator = "<br>"
-# highlight(code, PythonLexer(), myformatter, open("resulting.html", "w"))
+
 code = highlight(code, PythonLexer(), myformatter)
 code = (
     "<table class="
@@ -43,12 +49,9 @@ algorithm += (
     + ", ".join(complexity.split(";")[:-1])
     + "</i>respectively."
 )
-# print(question)
-# print(algorithm)
 print(code)
 
-resulting_file = open("../cards/resulting.txt", "w")
-
+resulting_file = open(PATH_TO_CARD_FILE, "w")
 resulting_file.write(question + "`")
 resulting_file.write(algorithm + "`")
 resulting_file.write(code)
